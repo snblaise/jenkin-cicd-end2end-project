@@ -17,45 +17,46 @@ variable "file_name" {
 
 variable "ami_jenkins" {
   description = "AMI for Jenkins instance"
-  default     = "ami-0d7a109bf30624c99"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
 
 variable "ami_sonarqube" {
   description = "AMI for SonarQube instance"
-  default     = "ami-0ebc1ac6d1cfb23a9"  # Update with correct AMI ID
+  default     = "ami-0cd59ecaf368e5ccf" # Update with correct AMI ID
 }
 
 variable "ami_nexus" {
   description = "AMI for Nexus instance"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
 
 variable "ami_dev" {
   description = "AMI for Development instances"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
 
 variable "ami_stage" {
   description = "AMI for Stage instances"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
 
 variable "ami_prod" {
   description = "AMI for Production instances"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
 
 variable "ami_prometheus" {
   description = "AMI for Prometheus instance"
-  default     = "ami-0ebc1ac6d1cfb23a9"  # Update with correct AMI ID
+  default     = "ami-0cd59ecaf368e5ccf" # Update with correct AMI ID
 }
 
 variable "ami_grafana" {
   description = "AMI for Grafana instance"
-  default     = "ami-0ebc1ac6d1cfb23a9"  # Update with correct AMI ID
+  default     = "ami-0cd59ecaf368e5ccf" # Update with correct AMI ID
 }
 
 variable "ami_splunk" {
   description = "AMI for Splunk/Indexer instance"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99" # Update with correct AMI ID
 }
+
