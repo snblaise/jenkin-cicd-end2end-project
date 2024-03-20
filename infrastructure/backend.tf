@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "your-terraform-state-bucket"
+    bucket         = "sn-jenkin-cicd-remote-state"
     key            = "terraform/state"
     region         = "us-east-1"
-    dynamodb_table = "terraform_locks"
-    encrypt        = true
-  }
+    profile        = "default"
+    }
 }

@@ -1,16 +1,23 @@
+
 variable "aws_region" {
   description = "AWS region to deploy resources"
   default     = "us-east-1"
 }
 
-variable "key_name" {
-  description = "Name of the SSH key pair"
-  default     = "your-keypair-name"
+variable "key_pair_name" {
+  description = "Name for the SSH key pair"
+  default     = "tf-keypair"
 }
+
+variable "file_name" {
+  description = "File name to save the private key"
+  default     = "private_key.pem"
+}
+
 
 variable "ami_jenkins" {
   description = "AMI for Jenkins instance"
-  default     = "ami-0a91cd140a1fc148a"  # Update with correct AMI ID
+  default     = "ami-0d7a109bf30624c99"  # Update with correct AMI ID
 }
 
 variable "ami_sonarqube" {
