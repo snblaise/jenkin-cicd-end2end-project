@@ -3,6 +3,32 @@ provider "aws" {
   region = var.aws_region
 }
 
+/* resource "aws_s3_bucket" "cicd_bucket" {
+  bucket = "sn-jenkin-cicd-remote-state"
+}
+
+resource "aws_s3_object" "cicd_bucket_object" {
+  bucket = aws_s3_bucket.cicd_bucket.id
+  key    = "terraform/state"
+
+} */
+
+resource "aws_dynamodb_table" "dynamodb-terraform-lock" {
+  name           = "terraform-lock"
+  hash_key       = "LockID"
+  read_capacity  = 20
+  write_capacity = 20
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+
+  tags = {
+    Name = "Terraform Lock Table"
+  }
+}
+
 # IAM Role for EC2
 resource "aws_iam_role" "ec2_role" {
   name               = "AWS-EC2FullAccess-Role"
@@ -21,6 +47,7 @@ resource "aws_iam_role" "ec2_role" {
 }
 EOF
 }
+
 
 # RSA key of size 4096 bits
 resource "tls_private_key" "rsa-key" {
@@ -99,12 +126,13 @@ resource "aws_instance" "nexus_instance" {
 
 # Dev server instance
 resource "aws_instance" "dev_instance" {
+  count           = 1 # value can be modified during deployment.
   ami             = var.ami_dev
   instance_type   = "t2.micro"
   key_name        = var.key_pair_name
   security_groups = ["dev-security-group"]
   tags = {
-    Name        = "Dev-Env"
+    Name        = "Dev-Env-${count.index + 1}"
     Environment = "dev"
   }
 }
@@ -124,12 +152,13 @@ resource "aws_instance" "stage_instance" {
 
 # Prod server instance
 resource "aws_instance" "prod_instance" {
+  count           = 1 #modify value to meet the demand.
   ami             = var.ami_dev
   instance_type   = "t2.micro"
   key_name        = var.key_pair_name
   security_groups = ["dev-security-group"]
   tags = {
-    Name        = "Prod-Env"
+    Name        = "Prod-Env-${count.index + 1}"
     Environment = "prod"
   }
 
